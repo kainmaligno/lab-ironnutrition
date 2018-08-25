@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-//import 'bulma/css/bulma.css';
-
-ReactDOM.render(<App />, document.getElementById('root'));
+import foods from './foods.js';
+foods.forEach((element) => {
+    element.show=true;
+})
+ReactDOM.render(<App foods={foods}/>, document.getElementById('root'));
 registerServiceWorker();
