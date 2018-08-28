@@ -1,30 +1,44 @@
 import React, { Component } from "react";
-
 import "bulma/css/bulma.css";
+
 
 class FoodBox extends Component {
   constructor(props) {
     super(props);
-    this.state = { eventCount: 0 };
+    this.state = { eventCount: 1 };
+   
   }
-
-  incrementa = () => {
-    this.setState({ eventCount: this.state.eventCount + 1 });
+   
+  handleClick = () => {
+    let food = this.props.food;
+    let qty = this.state.eventCount
+    this.props.elclick(food,qty)
+    console.log('estas en click de foodbox')
+  }
+ 
+  handleChange = (event) => {
+    let valor = event.target.value
+    this.setState({ eventCount: valor});
+    console.log('estas en handlechange')
+    
   };
+  
   render() {
     return (
       <div className="box">
         <article className="media">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={this.props.image} />
+             
+              <img src={this.props.food.image} alt = "imagencomida"/>
             </figure>
           </div>
           <div className="media-content">
             <div className="content">
               <p>
-                <strong>{this.props.name}</strong> <br />
-                <small>calories:{this.props.calories}</small>
+                
+                <strong>{this.props.food.name}</strong> <br />
+                <small>{this.props.food.calories} cal</small>
               </p>
             </div>
           </div>
@@ -32,13 +46,18 @@ class FoodBox extends Component {
             <div className="field has-addons">
               <div className="control">
                 <input
+                 placeholder="0"
                   className="input"
-                  type="number"
+                  type="number" 
                   value={this.state.eventCount}
+                  onChange={(event) => {this.handleChange(event)}}           
                 />
               </div>
               <div className="control">
-                <button onClick={this.incrementa} className="button is-info">
+                <button
+                className="button is-info"  
+                onClick={this.handleClick}
+                >
                   +
                 </button>
               </div>
