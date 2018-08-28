@@ -58,9 +58,9 @@ class App extends Component {
     let result = 0;
     for (let i = 0; i < this.state.todayFoods.lenght; i++) {
       result +=
-        this.state.todayFoods[i].qty * this.state.todayFoods[i].calories;
+        this.state.todayFoods[i].qty * this.state.todayFoods[i].calories;      
     }
-    console.log('paso por calorias',result)
+    console.log('paso por calorias')
     return result;
   }
   render() {

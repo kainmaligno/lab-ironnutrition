@@ -5,20 +5,32 @@ import "bulma/css/bulma.css";
 class FoodBox extends Component {
   constructor(props) {
     super(props);
-    this.state = { eventCount: 1 };
+    this.state = { qty: 1 };
    
   }
    
-  handleClick = () => {
+    agregarFood = () => {
     let food = this.props.food;
-    let qty = this.state.eventCount
-    this.props.elclick(food,qty)
+    let qty = this.state.qty;
+    this.props.elclick(food,qty,true)
+    this.setState({
+      qty: 0
+    });
     console.log('estas en click de foodbox')
   }
- 
+
+    restaFood =() => {
+      let food = this.props.food;
+      let qty = this.state.qty;
+      this.props.elclick(food,qty,false)
+      this.setState({
+        qty: 0
+      });
+    }
+
   handleChange = (event) => {
     let valor = event.target.value
-    this.setState({ eventCount: valor});
+    this.setState({ qty: valor});
     console.log('estas en handlechange')
     
   };
@@ -49,14 +61,14 @@ class FoodBox extends Component {
                  placeholder="0"
                   className="input"
                   type="number" 
-                  value={this.state.eventCount}
+                  value={this.state.qty}
                   onChange={(event) => {this.handleChange(event)}}           
                 />
               </div>
               <div className="control">
                 <button
                 className="button is-info"  
-                onClick={this.handleClick}
+                onClick={this.agregarFood}
                 >
                   +
                 </button>
